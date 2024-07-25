@@ -74,19 +74,19 @@ contract HogwartsHouses is VRFConsumerBaseV2Plus {
 	}
 
 	// house function
-	function house(address player) public view returns (string memory) {
+	function house(address student) public view returns (string memory) {
 		// dice has not yet been rolled to this address
-		if (s_results[player] == 0) {
+		if (s_results[student] == 0) {
 			revert SortingHatNotAsked();
 		}
 
 		// not waiting for the result of a thrown dice
-		if (s_results[player] == ROLL_IN_PROGRESS) {
+		if (s_results[student] == ROLL_IN_PROGRESS) {
 			revert AskInProgress();
 		}
 
 		// returns the house name from the name list function
-		return getHouseName(s_results[player]);
+		return getHouseName(s_results[student]);
 	}
 
 	// getHouseName function
